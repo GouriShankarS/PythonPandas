@@ -1,0 +1,13 @@
+Issue - Imagine if we are trying to get Latitude and Longitude from Cooordinates as in the below example, applying latitude to corrdinates frame doesn't work and it throws an error 
+"AttributeError: 'Series' object has no attribute 'latitude' and also handling 'None' coordinates value would require applying special method like lambda with condition handling.
+df["Latitude"] = df["Coordinates"].Latitude 
+
+Solution - Below code will get the latitude & longitude and also handles None values in Coordinates
+df["Latitude"] = df["Coordinates"].apply(lambda x: x.Latitude if x!= None else None)
+df["Longitude"] = df["Coordinates"].apply(lambda x: x.Longitude if x!= None else None)
+
+
+Example frame [df]
+ID	Address	                                     City	 County	             Postcode	Emp Name   Coordinates	                                Latitude  Longitude
+1	Flat 1, George Street, Sheffield S1 1WW	     Sheffield	 South Yorskshire    S1 1WW	Sam	   (Flat 1, George Street, Sheffield S1 1WW)	37.455	  -122.234
+2	Flat 2, George Street, Manchester S1 1WW     Manchester	 Chesire	     M1 1WW	Dan	    None	                                NaN	   NaN
